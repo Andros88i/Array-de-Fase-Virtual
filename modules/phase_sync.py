@@ -1,33 +1,24 @@
-IMPLEMENTACIÓN EN TERMUX (Python):
-
+# modules/phase_sync.py
 import numpy as np
-from scapy.all import *
-import threading
+import socket
+import time
+from typing import Dict, List
+import json
 
 class PhaseSync:
-    def __init__(self, nodes_list):
-        self.nodes = nodes_list  # Lista de IPs de nodos
-        self.phase_offsets = {}
+    def __init__(self, config_path: str = "config/node_network.json"):
+        with open(config_path, 'r') as f:
+            self.config = json.load(f)
         
-    def sync_ntp_precision(self):
-        # NTP modificado con timestamp de nanosegundos
-        resp = os.popen('date +%s.%N').read().strip()
-        sec, ns = resp.split('.')
-        return int(sec)*10**9 + int(ns)
+    def sync_nodes(self, nodes: List[str]) -> Dict:
+        """Sincroniza múltiples nodos para beamforming"""
+        # Implementación completa aquí
+        pass
     
-    def doppler_correction(self, sat_ephemeris):
-        # Corrección Doppler basada en TLE del satélite
-        from skyfield.api import load
-        ts = load.timescale()
-        t = ts.now()
-        
-        satellites = load.tle_file('https://celestrak.org/NORAD/elements/gp.php?GROUP=stations&FORMAT=tle')
-        sat = [sat for sat in satellites if sat.name == sat_ephemeris][0]
-        
-        # Posición relativa a cada nodo
-        for node in self.nodes:
-            geocentric = sat.at(t)
-            # Cálculo diferencia de fase por Doppler
-            # Fórmula: Δf = (v·r)/(c·f0)
-            doppler_shift = self.calculate_doppler(geocentric, node['position'])
-            self.phase_offsets[node['id']] = doppler_shift
+    def calculate_doppler(self, satellite_tle: str, node_position: tuple) -> float:
+        """Calcula corrección Doppler para un nodo"""
+        pass
+
+def node_mode(server_address: str):
+    """Modo nodo: se conecta al servidor C2"""
+    pass
