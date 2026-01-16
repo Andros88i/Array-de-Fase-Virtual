@@ -1,1 +1,12 @@
-
+{
+  "network_name": "SATNET-ALPHA",
+  "c2_server": "c2.example.com:443",
+  "nodes": [
+    {
+      "id": "node_001",
+      "ip": "192.168.1.100",
+      "position": [40.7128, -74.0060],
+      "capabilities": ["rtl_sdr", "wifi_array"]
+    }
+  ]
+}
