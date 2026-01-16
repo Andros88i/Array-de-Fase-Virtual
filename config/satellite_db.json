@@ -1,1 +1,20 @@
-
+{
+  "satellites": {
+    "NOAA-19": {
+      "norad_id": 33591,
+      "tle": ["NOAA 19", "1 33591U 09005A   24001.12345678  .00000000  00000-0  00000-0 0  9999", "2 33591  99.0000 180.0000 0010000   0.0000 360.0000 14.00000000000000"],
+      "frequencies": {
+        "APT": 137100000,
+        "HRPT": 1698000000
+      },
+      "vulnerabilities": ["maintenance_port_telnet", "no_auth_ax25"]
+    },
+    "ISS": {
+      "norad_id": 25544,
+      "frequencies": {
+        "voice": 145800000,
+        "sstv": 145800000
+      }
+    }
+  }
+}
